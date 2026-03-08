@@ -25,6 +25,7 @@ search();
 }
 
 
+
 function renderTags(){
 
 const tagContainer = document.getElementById("tagFilter");
@@ -57,6 +58,8 @@ tagContainer.appendChild(el);
 
 }
 
+
+
 function renderAddons(list){
 
 const container=document.getElementById("addonList");
@@ -79,14 +82,10 @@ card.innerHTML = `
 <div class="card-title">${addon.title}</div>
 
 <div class="card-tags">
-${addon.tags.map(t=>`<span class="tag">${t}</span>`).join(" ")}
+${addon.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
 </div>
 
 </div>
-`;
-
-</div>
-
 `;
 
 card.onclick=()=>{
@@ -100,4 +99,3 @@ container.appendChild(card);
 });
 
 }
-
