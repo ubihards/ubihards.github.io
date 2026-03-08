@@ -54,4 +54,10 @@ renderAddons(filtered);
 
 tagContainer.appendChild(el);
 
+setInterval(()=>{
+
+location.reload();
+
+},60000);
 });
+
