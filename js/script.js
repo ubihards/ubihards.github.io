@@ -1,16 +1,36 @@
-const container=document.getElementById("addonList");
+async function loadAddons(){
 
-fetch("js/addons.js?nocache=" + Date.now())
-.then(res => res.text())
-.then(text => {
+const response = await fetch("js/addons.js?nocache=" + Date.now());
 
-eval(text)
+const text = await response.text();
 
-renderAddons(addons)
+eval(text);
 
-})
+initSite();
+
+}
+
+loadAddons();
+
+
+
+function initSite(){
+
+renderAddons(addons);
+
+renderTags();
+
+search();
+
+}
+
+
 
 function renderAddons(list){
+
+const container=document.getElementById("addonList");
+
+if(!container)return;
 
 container.innerHTML="";
 
@@ -23,46 +43,29 @@ card.className="card";
 card.innerHTML=`
 
 <img src="${addon.thumbnail}">
+
 <div class="card-body">
+
 <div class="card-title">${addon.title}</div>
+
 <div class="card-tags">
-${addon.tags.map(t=>`<span>${t}</span>`).join(" ")}
+
+${addon.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+
 </div>
-</div>`;
+
+</div>
+
+`;
 
 card.onclick=()=>{
+
 location.href=addon.page;
+
 };
 
 container.appendChild(card);
+
 });
 
 }
-renderAddons(addons);
-
-/* SEARCH */
-
-const search=document.getElementById("searchInput");
-search.addEventListener("input",()=>{
-const text=search.value.toLowerCase();
-const filtered=addons.filter(a=>a.title.toLowerCase().includes(text));
-renderAddons(filtered);
-});
-
-/* TAG FILTER */
-
-const tagContainer=document.getElementById("tagFilter");
-const tags=[...new Set(addons.flatMap(a=>a.tags))];
-tags.forEach(tag=>{
-const el=document.createElement("span");
-el.innerText=tag;
-el.onclick=()=>{
-const filtered=addons.filter(a=>a.tags.includes(tag));
-renderAddons(filtered);
-
-};
-
-tagContainer.appendChild(el);
-
-
-});
