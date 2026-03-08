@@ -9,19 +9,9 @@ thumbnail:"./images/dael_banner.png",
 
 tags:["weapon","rpg","armor","combat","custom animation"]
   
-},
-
-{
-title:"Frostbound Cataclysm Addon",
-
-page:"addons/daelcraleth.html",
-
-thumbnail:"./images/dael_banner.png",
-
-tags:["weapon","rpg","armor","combat","custom animation"]
-  
-}  
+}
 
 
 ];
+
 
