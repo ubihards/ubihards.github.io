@@ -1,5 +1,15 @@
 const container=document.getElementById("addonList");
 
+fetch("js/addons.js?nocache=" + Date.now())
+.then(res => res.text())
+.then(text => {
+
+eval(text)
+
+renderAddons(addons)
+
+})
+
 function renderAddons(list){
 
 container.innerHTML="";
@@ -53,5 +63,6 @@ renderAddons(filtered);
 };
 
 tagContainer.appendChild(el);
+
 
 });
