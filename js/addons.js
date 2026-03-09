@@ -16,11 +16,12 @@ tags:["weapon","rpg","fantasy","combat"]
 title:"Frostbound Catalyscm Addon",
 page:"addons/ubihard/frostbound.html",
 thumbnail:"./images/ubihard_frostbound_hammer.png",
-tags:["weapon","rpg","fantasy","combat"]  
+tags:["accessories","weapon","rpg","fantasy","combat"]  
 }  
 
 
 ];
+
 
 
 
