@@ -9,13 +9,14 @@ tags:["weapon","rpg","armor","combat","fantasy","custom animation"]
 {
 title:"Trident of Clauzeus Addon",
 page:"addons/aegis/clauzeustrident.html",
-thumbnail:"./images/dael_banner.png",
+thumbnail:"./images/aegis_clauzeus_trident.png",
 tags:["weapon","rpg","fantasy","combat"]  
 }
   
 
 
 ];
+
 
 
 
