@@ -7,15 +7,21 @@ thumbnail:"./images/dael_banner.png",
 tags:["weapon","rpg","armor","combat","fantasy","custom animation"]  
 },
 {
-title:"Trident of Clauzeus Addon",
+title:"Oceanheart of Clauzeus Addon",
 page:"addons/aegis/clauzeustrident.html",
 thumbnail:"./images/aegis_clauzeus_trident.png",
 tags:["weapon","rpg","fantasy","combat"]  
-}
-  
+},
+{
+title:"Frostbound Catalyscm Addon",
+page:"addons/ubihard/frostbound.html",
+thumbnail:"./images/ubihard_frostbound_hammer.png",
+tags:["weapon","rpg","fantasy","combat"]  
+}  
 
 
 ];
+
 
 
 
