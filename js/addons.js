@@ -2,16 +2,20 @@ const addons = [
 
 {
 title:"Daelcraleth Blade Addon",
-
-page:"addons/daelcraleth.html",
-
+page:"addons/aegis/daelcraleth.html",
 thumbnail:"./images/dael_banner.png",
-
-tags:["weapon","rpg","armor","combat","custom animation"]
-  
+tags:["weapon","rpg","armor","combat","fantasy","custom animation"]  
+},
+{
+title:"Trident of Clauzeus Addon",
+page:"addons/aegis/clauzeustrident.html",
+thumbnail:"./images/dael_banner.png",
+tags:["weapon","rpg","fantasy","combat"]  
 }
+  
 
 
 ];
+
 
 
