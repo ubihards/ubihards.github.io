@@ -1,137 +1,131 @@
 const container = document.getElementById("addonList");
+const search = document.getElementById("searchInput");
+const tagContainer = document.getElementById("tagFilter");
+const resultCount = document.getElementById("resultCount");
+const emptyState = document.getElementById("emptyState");
 
-let currentList = [...addons];
+let activeTag = "all";
 
-function renderAddons(list){
+function renderAddons() {
+    const query = search.value.trim().toLowerCase();
 
-container.innerHTML="";
+    const filtered = addons.filter(addon => {
+        const matchesSearch = (
+            `${addon.title} ${addon.tags.join(" ")} ${addon.description || ""}`
+        ).toLowerCase().includes(query);
 
-list.forEach(addon=>{
+        const matchesTag =
+            activeTag === "all" || addon.tags.includes(activeTag);
 
-const card=document.createElement("div");
+        return matchesSearch && matchesTag;
+    });
 
-card.className="card";
+    container.innerHTML = "";
 
-card.innerHTML=`
+    filtered.forEach(addon => {
+        const card = document.createElement("article");
 
-<img src="${addon.thumbnail}">
-<div class="card-body">
-<div class="card-title">${addon.title}</div>
-<div class="card-tags">
-${addon.tags.map(t=>`<span>${t}</span>`).join(" ")}
+        card.className = "card";
+        card.tabIndex = 0;
+        card.setAttribute("role", "link");
+        card.setAttribute("aria-label", `View ${addon.title}`);
+
+        card.innerHTML = `
+            <div class="card-image">
+                <img
+                    src="${addon.thumbnail}"
+                    alt="${addon.title} artwork"
+                    loading="lazy"
+                >
+            </div>
+
+            <div class="card-body">
+                <div class="card-title">${addon.title}</div>
+
+<div class="card-footer">
+    <div class="card-tags">
+        ${[...addon.tags]
+            .sort((a, b) => a.localeCompare(b, undefined, {
+                sensitivity: "base",
+                numeric: true
+            }))
+            .slice(0, 10)
+            .map(tag => `<span>${tag}</span>`)
+            .join("")}
+    </div>
+
+    <span class="card-arrow" aria-hidden="true">↗</span>
 </div>
-</div>`;
+            </div>
+        `;
 
-card.onclick=()=>{
-location.href=addon.page;
-};
+        const openPage = () => {
+            window.location.href = addon.page;
+        };
 
-container.appendChild(card);
+        card.addEventListener("click", openPage);
 
-});
+        card.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                openPage();
+            }
+        });
 
+        container.appendChild(card);
+    });
+
+    resultCount.textContent = `${filtered.length} ${
+        filtered.length === 1 ? "addon" : "addons"
+    }`;
+
+    emptyState.hidden = filtered.length !== 0;
 }
 
-
-/* SORT FUNCTION */
-
-function sortAddons(type){
-
-if(type==="az"){
-currentList.sort((a,b)=>a.title.localeCompare(b.title));
-}
-
-if(type==="za"){
-currentList.sort((a,b)=>b.title.localeCompare(a.title));
-}
-
-renderAddons(currentList);
-
-}
-
-
-/* INITIAL RENDER */
-
-renderAddons(currentList);
-
-
-/* SEARCH */
-
-const search=document.getElementById("searchInput");
-
-search.addEventListener("input",()=>{
-
-const text=search.value.toLowerCase();
-
-currentList=addons.filter(a=>
-a.title.toLowerCase().includes(text)
+// Collect unique tags and sort alphabetically (A-Z).
+const sortedTags = [...new Set(
+    addons.flatMap(addon => addon.tags)
+)].sort((a, b) =>
+    a.localeCompare(b, undefined, {
+        sensitivity: "base",
+        numeric: true
+    })
 );
 
-renderAddons(currentList);
+// Keep "All addons" at the beginning.
+const tags = ["all", ...sortedTags];
 
+// Render tag filter buttons.
+tags.forEach(tag => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.textContent = tag === "all" ? "All addons" : tag;
+    button.className = tag === activeTag ? "active" : "";
+
+    button.setAttribute(
+        "aria-pressed",
+        String(tag === activeTag)
+    );
+
+    button.addEventListener("click", () => {
+        activeTag = tag;
+
+        tagContainer.querySelectorAll("button").forEach(item => {
+            const selected = item === button;
+
+            item.classList.toggle("active", selected);
+            item.setAttribute("aria-pressed", String(selected));
+        });
+
+        renderAddons();
+    });
+
+    tagContainer.appendChild(button);
 });
 
+// Search addons in real time.
+search.addEventListener("input", renderAddons);
 
-/* TAG FILTER */
-
-const tagContainer=document.getElementById("tagFilter");
-
-const tags=[...new Set(addons.flatMap(a=>a.tags))];
-
-/* SORT TAG ABJAD */
-
-tags.sort((a,b)=>a.localeCompare(b));
-
-tags.forEach(tag=>{
-
-const el=document.createElement("span");
-
-el.innerText=tag;
-
-el.onclick=()=>{
-
-currentList=addons.filter(a=>a.tags.includes(tag));
-
-renderAddons(currentList);
-
-};
-
-tagContainer.appendChild(el);
-
-});
-
-
-/* SORT DROPDOWN */
-
-const sortSelect=document.getElementById("sortSelect");
-
-sortSelect.addEventListener("change",()=>{
-sortAddons(sortSelect.value);
-});
-
-/* CHANGELOG TOGGLE */
-
-document.querySelectorAll(".log-title").forEach(title=>{
-
-title.addEventListener("click",()=>{
-
-const content = title.nextElementSibling;
-
-if(content.style.display==="block"){
-
-content.style.display="none";
-
-}else{
-
-content.style.display="block";
-
-}
-
-});
-
-});
-/* AUTO REFRESH */
-
-setInterval(()=>{
-location.reload();
-},60000);
+// Initial render.
+renderAddons();
