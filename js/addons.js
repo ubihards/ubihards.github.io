@@ -2,7 +2,7 @@
 const addons = [
     {
         title: "Daecraleth Blade Addon",
-        page: "addons/daelcraleth.html",
+        page: "addons/aegis/daelcraleth.html",
         thumbnail: "./images/dael_banner.png",
         description: "Daecraleth Blade aegis.",
         tags: [
