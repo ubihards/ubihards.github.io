@@ -1,38 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b12">
+<meta name="description" content="Minecraft addons.">
 <title>UBIHARD Addons Hub</title>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
 <link rel="icon" type="image/png" href="./images/logo.png">  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <nav class="navbar">
-<div class="brand">
-<img src="./images/logo.png" class="logo">
-<span class="site-title">UBIHARD</span>
-</div>
-
-<input id="searchInput" placeholder="Search addons">
+  <a class="brand" href="./index.html"><img src="./images/logo.png" class="logo" alt="UBIHARD logo"><span class="site-title">UBIHARD<span class="brand-dot">.</span></span></a>
+  <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search addons..." aria-label="Search addons"><kbd>⌕</kbd></label>
 </nav>
+<main>
+  <section class="hero">
+  	<!--
+    <div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> THE ADDONS COLLECTION</div>
+      <h1>Upgrade your<br><span>Minecraft world.</span></h1>
+      <p>Custom weapons, unique abilities, and handcrafted experiences built to make your next adventure legendary.</p>
+      <a class="primary-btn" href="#latest">Explore addons <span>↘</span></a>
+    </div>
+    -->
+    <div class="hero-art"><img src="./images/dael_banner.png" alt="Daelcraleth Blade addon artwork"><div class="art-chip"><span>✦</span> FEATURED ADDON <b>01</b></div></div>
+  </section>
+  <section class="catalog" id="latest">
+    <div class="section-heading"><div>
+    <!--	
+<div class="eyebrow">FIND YOUR NEXT ADVENTURE</div> -->
 
-<section>
-<h2>Categories</h2>
-<div id="tagFilter" class="tags"></div>
-</section>
-
-<section>
-<h2>Latest Addons</h2>
-<div id="addonList" class="addon-grid"></div>
-</section>
-
-<footer class="site-footer">
+<h2>Explore the collection</h2></div><span class="result-count" id="resultCount"></span></div>
+    <div id="tagFilter" class="tags" aria-label="Filter addons by category"></div>
+    <div id="addonList" class="addon-grid"></div>
+    <div id="emptyState" class="empty-state" hidden>No addons found. Try another search or category.</div>
+  </section>
+</main>
+<footer>
+</div>	
+<a class="brand footer-brand" href="./index.html"><img src="./images/logo.png" class="logo" alt=""><span class="site-title">UBIHARD<span class="brand-dot">.</span></span></a><span>.</span>
 
 <div class="footer-content">
 
@@ -49,19 +61,7 @@ YouTube
 
 </div>
 
-</div>
-
-  </footer>
-  
-<script src="js/addons.js?v=1.001"></script>  
-<script src="js/script.js?v=1.001"></script>
-<script src="js/muach.js?v=1.000"></script>    
-
-</body>
-
-</html>
-
-
-
-
-
+</footer>
+<script src="js/addons.js?v=1.002"></script>
+<script src="js/script.js?v=1.002"></script>
+</body></html>
