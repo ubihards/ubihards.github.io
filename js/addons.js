@@ -10,7 +10,6 @@ const addons = [
             "rpg",
             "armor",
             "combat",
-            "fantasy",
             "custom animation"
         ]
     },
@@ -22,7 +21,6 @@ const addons = [
         tags: [
             "weapon",
             "rpg",
-            "fantasy",
             "combat"
         ]
     },
@@ -35,7 +33,6 @@ const addons = [
             "accessories",
             "weapon",
             "rpg",
-            "fantasy",
             "combat"
         ]
     }
